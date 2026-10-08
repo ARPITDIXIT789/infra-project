@@ -1,0 +1,15 @@
+---
+- name: Configure web nodes
+  hosts: web
+  become: true
+  serial: 1  # Rolling deployment: ek-ek node
+
+  pre_tasks:
+    - name: Wait until SSH is ready
+      ansible.builtin.wait_for_connection:
+        timeout: 300
+
+  roles:
+    - { role: common, tags: common }
+    - { role: docker, tags: docker }
+    - { role: nginx, tags: nginx }

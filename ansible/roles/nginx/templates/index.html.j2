@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_title }}</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ site_title }}</h1>
+        <p>Served by <b>{{ inventory_hostname }}</b> | Env: <span class="env-badge">{{ env_name }}</span></p>
+        <div class="info-card">
+            <h3>🚀 Infrastructure Details</h3>
+            <ul>
+                <li><strong>Host:</strong> {{ inventory_hostname }}</li>
+                <li><strong>Environment:</strong> {{ env_name }}</li>
+                <li><strong>Managed by:</strong> Ansible</li>
+                <li><strong>Provisioned by:</strong> Terraform</li>
+                <li><strong>CI/CD:</strong> Jenkins</li>
+            </ul>
+        </div>
+        <p class="footer">Deployed with ❤️ using Ansible + Terraform + Jenkins</p>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+---
+site_title: "Ansible + Terraform + Jenkins"
+env_name: dev
+base_packages:
+  - git
+  - curl
+  - unzip
+  - tree
+  - htop

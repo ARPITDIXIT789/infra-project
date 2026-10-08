@@ -1,0 +1,23 @@
+---
+- name: Update apt cache (lock wait ke saath)
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    lock_timeout: 120
+
+- name: Install base packages
+  ansible.builtin.apt:
+    name: "{{ base_packages }}"
+    state: present
+    lock_timeout: 120
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname }}"
+
+- name: Secret file (vault demo)
+  ansible.builtin.copy:
+    content: "APP_SECRET={{ vault_app_secret }}\n"
+    dest: /etc/app.env
+    mode: "0600"
+  no_log: true

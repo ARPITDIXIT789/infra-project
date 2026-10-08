@@ -1,0 +1,7 @@
+[web]
+%{ for i, ip in ips ~}
+web-${i + 1} ansible_host=${ip}
+%{ endfor ~}
+
+[web:vars]
+ansible_user=ubuntu

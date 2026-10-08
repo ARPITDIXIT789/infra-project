@@ -1,0 +1,10 @@
+*.pem
+*.tfstate*
+.terraform/
+.terraform.lock.hcl
+tfplan
+ansible/inventories/dev/hosts.ini
+.vault_pass
+__pycache__/
+*.pyc
+.DS_Store
