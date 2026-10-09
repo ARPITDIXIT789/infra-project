@@ -64,7 +64,9 @@ pipeline {
       when { expression { params.ACTION == 'apply' } }
       steps {
         sh '''
-          for ip in $(terraform -chdir=terraform output -json public_ips | tr -d '[]," '); do
+          terraform -chdir=terraform output -json public_ips | tr -d '[]"' | tr ',' '\n' | while read ip; do
+            ip=$(echo $ip | xargs)
+            [ -z "$ip" ] && continue
             echo "Checking $ip"
             curl -sf --max-time 10 http://$ip | grep -i "served by"
           done
