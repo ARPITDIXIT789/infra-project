@@ -1,5 +1,5 @@
 ---
-site_title: "Ansible + Terraform + Jenkins"
+site_title: "Arpit's DevOps Project 🚀"
 env_name: dev
 base_packages:
   - git
