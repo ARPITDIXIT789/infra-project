@@ -88,7 +88,7 @@ resource "aws_instance" "web" {
     Env  = "dev"
   }
 }
-
+/*
 # ---------- Generate Ansible Inventory ----------
 
 resource "local_file" "inventory" {
@@ -96,4 +96,4 @@ resource "local_file" "inventory" {
   content = templatefile("${path.module}/inventory.tftpl", {
     ips = aws_instance.web[*].private_ip
   })
-}
+}*/

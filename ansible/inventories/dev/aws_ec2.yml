@@ -1,0 +1,25 @@
+---
+plugin: amazon.aws.aws_ec2
+
+# Kaunse AWS Region mein scan karna hai
+regions:
+  - ap-south-1
+
+# Filter: Sirf wo instances uthao jo running hon aur Role=web ho
+filters:
+  instance-state-name: running
+  tag:Role: web
+  tag:Env: dev
+
+# SSH ke liye IP: Private IP use karo (same VPC hai)
+hostnames:
+  - private-ip-address
+
+# 'web' group automatically create karo taaki site.yml aur group_vars ko chhedna na pade
+groups:
+  web: "'web' in tags.Role"
+
+# Variables setup (ansible_user=ubuntu)
+compose:
+  ansible_host: private_ip_address
+  ansible_user: "'ubuntu'"
