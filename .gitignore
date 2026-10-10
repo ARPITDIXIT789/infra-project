@@ -8,3 +8,4 @@ ansible/inventories/dev/hosts.ini
 __pycache__/
 *.pyc
 .DS_Store
+.vscode/

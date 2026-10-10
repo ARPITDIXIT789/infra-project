@@ -5,21 +5,21 @@ plugin: amazon.aws.aws_ec2
 regions:
   - ap-south-1
 
-# Filter: Sirf wo instances uthao jo running hon aur Role=web ho
+# Filter: Sirf wo instances uthao jo running hon aur Role=web, Env=dev ho
 filters:
   instance-state-name: running
-  tag:Role: web
-  tag:Env: dev
+  "tag:Role": web
+  "tag:Env": dev
 
-# SSH ke liye IP: Private IP use karo (same VPC hai)
+# Hostname in inventory: web-1, web-2 (taaki website pe sahi hostname render ho)
 hostnames:
-  - private-ip-address
+  - tag:Name
 
-# 'web' group automatically create karo taaki site.yml aur group_vars ko chhedna na pade
+# 'web' group automatically create karo taaki site.yml aur group_vars bilkul pehle jaise kaam karein
 groups:
-  web: "'web' in tags.Role"
+  web: "tags['Role'] | default('') == 'web'"
 
-# Variables setup (ansible_user=ubuntu)
+# SSH connection settings (Private IP se connect hoga)
 compose:
   ansible_host: private_ip_address
   ansible_user: "'ubuntu'"

@@ -50,6 +50,7 @@ pipeline {
         ]) {
           sh '''
             cd ansible
+            ansible-galaxy collection install -r requirements.yml
             ansible-playbook site.yml --syntax-check
             ansible-playbook site.yml \
               --private-key "$SSH_KEY" \
